@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users and Quotes</title>
+</head>
+
+<body>
+
+<a href = '/quotes'>Dashboard</a>
+<a href = '/logout'>Logout</a>
+<h2>Posts by: {{user.name}}</h2>
+<h4>Post Count:{{posts | length}}</h4>
+
+{% for post in posts %}
+<p><span style = 'color:red'>{{post.quoted_by}}</span> : {{post.message}}</p>
+{% endfor %}
+
+
+

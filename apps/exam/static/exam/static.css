@@ -1,0 +1,28 @@
+.Quotes{
+    border: 2px solid black;
+    max-height: 500px;
+    max-width: 350px;
+    overflow: auto ;
+    float: left;
+    display: inline-block;
+    margin-right:150px;
+}
+
+.favoritequotes{
+    border: 2px solid black;
+    max-height: 500px;
+    max-width: 500px;
+    overflow: auto ;
+    float: left;
+    display: inline-block;
+    margin-left:400px;
+
+}
+.contribute{
+    margin-top: 550px;
+    margin-left: 300px;
+}
+
+.textbox{
+    height: 50px;
+}

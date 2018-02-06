@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quotes</title>
+</head>
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'exam/static.css' %}">
+<body>
+
+{% if messages %}
+ <ul class="messages">
+     {% for message in messages %}
+     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+          {{ message }}
+     </li>
+     {% endfor %}
+    </ul>
+    {% endif %}  
+<h1>Welcome, {{user.name}}</h1>
+<a href = '/logout'>Logout</a>
+<div class = 'Quotes'>
+<h3>Quotable Quotes</h3>
+
+{%csrf_token%}
+{%for quote in quotes %}
+<p>{{quote.quoted_by}}: {{quote.message}}</p>
+<p>posted by:<a href= "/users/{{quote.posted_by.id}}">{{quote.posted_by.name}}</a> </p>
+<p><a href = '/favorite/{{quote.id}}'><button>Add to my list</button></a>
+{% endfor %}
+
+</div>
+
+<div class = 'favoritequotes'>
+<h3>Your favorite Quotes</h3>
+ {% for favorite in favorite_quotes %}
+<p>{{favorite.quoted_by}} : {{favorite.message}}</p>
+<p>posted by:<a href= "/users/{{favorite.posted_by.id}}">{{favorite.posted_by.name}}</a></p>
+<p><a href = '/remove_favorite/{{favorite.id}}'><button>Remove from my list</button></a>
+{% endfor %}
+</div>
+
+
+
+<div class = 'contribute'>
+<h3>Contribute a Quote</h3>
+<form action = '/createquote', method = 'POST'>
+{%csrf_token%}
+Quoted by:<input type = 'text', name = 'quoted_by'>
+Message <input type = 'textbox', name = 'message'>
+<button>Add Quote</button>
+</form>
+</div>
+    
+</body>
+</html>
